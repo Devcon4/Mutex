@@ -1,0 +1,7 @@
+/api/mutex/bin
+/api/mutex/obj
+/api/mutex/Source/mutex/bin
+/api/mutex/Source/mutex/bin/Debug
+/api/mutex/Source/mutex/obj
+/api/mutex/Tests/mutex.IntegrationTest/bin
+/api/mutex/Tests/mutex.IntegrationTest/obj

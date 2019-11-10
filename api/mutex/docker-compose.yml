@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: MutexDev
+      POSTGRES_DB: mutex
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - mutex_default
+
+  mutex:
+    image: ${DOCKER_REGISTRY-}mutex
+    build:
+      context: .
+      dockerfile: Source/mutex/Dockerfile
+    networks:
+      - mutex_default
+
+networks:
+  mutex_default:
+
+volumes:
+  dbdata:
