@@ -1,202 +1,254 @@
 
-// Custom Theming for Angular Material
+// Custom theme setup for Angular projects.
+// Based on a 0-15 color palette similar to Nord https://www.nordtheme.com/docs/colors-and-palettes
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+// TO USE:
+// 1. Set the colors below to yours. It is suggested to follow a similar pattern as Nord.
+// 2. Import into your styles.scss (@import 'theme.scss';)
+// 3. Call the entrypoint with your project name. (@include create-project(my-project);)
+// 4. 🎨 You may need to tweek configuration in here based on the colors you have selected, the main areas are marked with 🎨.
 
-@mixin theme-mixin($theme-preference) {
+// Entry point. Sets the name of the project and sets theme switching.
+// Example @include create-project(my-test);
+// By default we will use the users prefered color theme but this can be disabled.
+@mixin create-project($name, $switching: true) {
+
+    //TODO: Create a way to override the theme so you can hook up a button to switch it.
+    // Allow theme switching based on user preference.
+    @if $switching {
+        @media (prefers-color-scheme: light) {
+            html {
+                @include theme-mixin($name, light);
+            }
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            html {
+                @include theme-mixin($name, dark);
+            }
+        }
+    } @else {
+
+        // Defaults to light theme.
+        html {
+            @include theme-mixin($name, light);
+        }
+    }
+}
+
+// Mixin that generates a theme.
+// Creates global css variables 0-15 for your custom code to use.
+// Sets up material to use your css variable colors. They are bound so if you update the variable it will update the material styles.
+// It is setup to take a theming preference of light/dark but could have multiple preferences depending on use case.
+@mixin theme-mixin($name, $theme-preference) {
+
     @include mat-core();
 
     * {
-        --mutex0: #202426;
-        --mutex1: #2F353D;
-        --mutex2: #313945;
-        --mutex3: #3A434D;
+        // Setup colors.
+        // 🎨 Change these to whatever colors you want.
 
-        --mutex4: #F2F2F2;
-        --mutex5: #ECF1F3;
-        --mutex6: #EBEBEB;
+        // Dark colors.
+        --#{$name}0: #202426;
+        --#{$name}1: #2F353D;
+        --#{$name}2: #313945;
+        --#{$name}3: #3A434D;
 
-        --mutex7: #6C733D;
-        --mutex8: #81A049;
-        --mutex9: #9DA65D;
-        --mutex10: #799149;
+        // Light colors.
+        --#{$name}4: #F2F2F2;
+        --#{$name}5: #ECF1F3;
+        --#{$name}6: #EBEBEB;
+
+        // Primary colors.
+        --#{$name}7: #6C733D;
+        --#{$name}8: #81A049;
+        --#{$name}9: #9DA65D;
+        --#{$name}10: #799149;
         
-        --mutex11: #E6C567;
-        --mutex12: #447EB3;
-        --mutex13: #A1CD44;
-        --mutex14: #D93830;
-        --mutex15: #F5857F;
+        // Action colors.
+        --#{$name}11: #E6C567;
+        --#{$name}12: #447EB3;
+        --#{$name}13: #A1CD44;
+        --#{$name}14: #D93830;
+        --#{$name}15: #F5857F;
 
-        $mutex-lush: (
-            50: var(--mutex7),
-            100: var(--mutex7),
-            200: var(--mutex7),
-            300: var(--mutex7),
-            400: var(--mutex8),
-            500: var(--mutex8),
-            600: var(--mutex8),
-            700: var(--mutex9),
-            800: var(--mutex9),
-            900: var(--mutex10),
-            A100: var(--mutex9),
-            A200: var(--mutex9),
-            A400: var(--mutex9),
-            A700: var(--mutex10),
+        // Create maps for each color group to be used by material.
+        // 50-900 are shades material will use. Technically this should be shades but 4 colors should cover almost every usecase. I also might not have linear shades.
+        // A100-A700 are alternatives that some components can use.
+        // Contrast maps what color text should appear on each color.
+        // 🎨 You might have to tweek these values depending on what colors you picked.
+        $primary: (
+            50: var(--#{$name}7),
+            100: var(--#{$name}7),
+            200: var(--#{$name}7),
+            300: var(--#{$name}7),
+            400: var(--#{$name}8),
+            500: var(--#{$name}8),
+            600: var(--#{$name}8),
+            700: var(--#{$name}9),
+            800: var(--#{$name}9),
+            900: var(--#{$name}10),
+            A100: var(--#{$name}9),
+            A200: var(--#{$name}9),
+            A400: var(--#{$name}9),
+            A700: var(--#{$name}10),
             contrast: (
-                50: var(--mutex6),
-                100: var(--mutex6),
-                200: var(--mutex6),
-                300: var(--mutex6),
-                400: var(--mutex0),
-                500: var(--mutex0),
-                600: var(--mutex0),
-                700: var(--mutex0),
-                800: var(--mutex0),
-                900: var(--mutex0),
-                A100: var(--mutex0),
-                A200: var(--mutex0),
-                A400: var(--mutex0),
-                A700: var(--mutex0),
+                50: var(--#{$name}6),
+                100: var(--#{$name}6),
+                200: var(--#{$name}6),
+                300: var(--#{$name}6),
+                400: var(--#{$name}0),
+                500: var(--#{$name}0),
+                600: var(--#{$name}0),
+                700: var(--#{$name}0),
+                800: var(--#{$name}0),
+                900: var(--#{$name}0),
+                A100: var(--#{$name}0),
+                A200: var(--#{$name}0),
+                A400: var(--#{$name}0),
+                A700: var(--#{$name}0),
             )
         );
 
-        $mutex-night: (
-            50: var(--mutex1),
-            100: var(--mutex1),
-            200: var(--mutex1),
-            300: var(--mutex1),
-            400: var(--mutex0),
-            500: var(--mutex0),
-            600: var(--mutex0),
-            700: var(--mutex2),
-            800: var(--mutex2),
-            900: var(--mutex3),
-            A100: var(--mutex2),
-            A200: var(--mutex2),
-            A400: var(--mutex2),
-            A700: var(--mutex3),
+        $dark: (
+            50: var(--#{$name}1),
+            100: var(--#{$name}1),
+            200: var(--#{$name}1),
+            300: var(--#{$name}1),
+            400: var(--#{$name}0),
+            500: var(--#{$name}0),
+            600: var(--#{$name}0),
+            700: var(--#{$name}2),
+            800: var(--#{$name}2),
+            900: var(--#{$name}3),
+            A100: var(--#{$name}2),
+            A200: var(--#{$name}2),
+            A400: var(--#{$name}2),
+            A700: var(--#{$name}3),
             contrast: (
-                50: var(--mutex6),
-                100: var(--mutex6),
-                200: var(--mutex6),
-                300: var(--mutex6),
-                400: var(--mutex6),
-                500: var(--mutex6),
-                600: var(--mutex6),
-                700: var(--mutex6),
-                800: var(--mutex6),
-                900: var(--mutex6),
-                A100: var(--mutex6),
-                A200: var(--mutex6),
-                A400: var(--mutex6),
-                A700: var(--mutex6),
+                50: var(--#{$name}6),
+                100: var(--#{$name}6),
+                200: var(--#{$name}6),
+                300: var(--#{$name}6),
+                400: var(--#{$name}6),
+                500: var(--#{$name}6),
+                600: var(--#{$name}6),
+                700: var(--#{$name}6),
+                800: var(--#{$name}6),
+                900: var(--#{$name}6),
+                A100: var(--#{$name}6),
+                A200: var(--#{$name}6),
+                A400: var(--#{$name}6),
+                A700: var(--#{$name}6),
             )
         );
 
-        $mutex-frost: (
-            50: var(--mutex6),
-            100: var(--mutex6),
-            200: var(--mutex6),
-            300: var(--mutex6),
-            400: var(--mutex6),
-            500: var(--mutex6),
-            600: var(--mutex6),
-            700: var(--mutex4),
-            800: var(--mutex4),
-            900: var(--mutex5),
-            A100: var(--mutex5),
-            A200: var(--mutex5),
-            A400: var(--mutex5),
-            A700: var(--mutex5),
+        $light: (
+            50: var(--#{$name}6),
+            100: var(--#{$name}6),
+            200: var(--#{$name}6),
+            300: var(--#{$name}6),
+            400: var(--#{$name}6),
+            500: var(--#{$name}6),
+            600: var(--#{$name}6),
+            700: var(--#{$name}4),
+            800: var(--#{$name}4),
+            900: var(--#{$name}5),
+            A100: var(--#{$name}5),
+            A200: var(--#{$name}5),
+            A400: var(--#{$name}5),
+            A700: var(--#{$name}5),
             contrast: (
-                50: var(--mutex0),
-                100: var(--mutex0),
-                200: var(--mutex0),
-                300: var(--mutex0),
-                400: var(--mutex0),
-                500: var(--mutex0),
-                600: var(--mutex0),
-                700: var(--mutex0),
-                800: var(--mutex0),
-                900: var(--mutex0),
-                A100: var(--mutex0),
-                A200: var(--mutex0),
-                A400: var(--mutex0),
-                A700: var(--mutex0),
+                50: var(--#{$name}0),
+                100: var(--#{$name}0),
+                200: var(--#{$name}0),
+                300: var(--#{$name}0),
+                400: var(--#{$name}0),
+                500: var(--#{$name}0),
+                600: var(--#{$name}0),
+                700: var(--#{$name}0),
+                800: var(--#{$name}0),
+                900: var(--#{$name}0),
+                A100: var(--#{$name}0),
+                A200: var(--#{$name}0),
+                A400: var(--#{$name}0),
+                A700: var(--#{$name}0),
             )
         );
 
-        $mutex-blume: (
-            50: var(--mutex11),
-            100: var(--mutex11),
-            200: var(--mutex12),
-            300: var(--mutex12),
-            400: var(--mutex13),
-            500: var(--mutex13),
-            600: var(--mutex14),
-            700: var(--mutex14),
-            800: var(--mutex15),
-            900: var(--mutex15),
-            A100: var(--mutex14),
-            A200: var(--mutex14),
-            A400: var(--mutex13),
-            A700: var(--mutex12),
-            A900: var(--mutex11),
+        $actions: (
+            50: var(--#{$name}11),
+            100: var(--#{$name}11),
+            200: var(--#{$name}12),
+            300: var(--#{$name}12),
+            400: var(--#{$name}13),
+            500: var(--#{$name}13),
+            600: var(--#{$name}14),
+            700: var(--#{$name}14),
+            800: var(--#{$name}15),
+            900: var(--#{$name}15),
+            A100: var(--#{$name}14),
+            A200: var(--#{$name}14),
+            A400: var(--#{$name}13),
+            A700: var(--#{$name}12),
+            A900: var(--#{$name}11),
             contrast: (
-                50: var(--mutex0),
-                100: var(--mutex0),
-                200: var(--mutex6),
-                300: var(--mutex6),
-                400: var(--mutex0),
-                500: var(--mutex0),
-                600: var(--mutex6),
-                700: var(--mutex6),
-                800: var(--mutex0),
-                900: var(--mutex0),
-                A100: var(--mutex0),
-                A200: var(--mutex6),
-                A400: var(--mutex0),
-                A700: var(--mutex6),
-                A900: var(--mutex0),
+                50: var(--#{$name}0),
+                100: var(--#{$name}0),
+                200: var(--#{$name}6),
+                300: var(--#{$name}6),
+                400: var(--#{$name}0),
+                500: var(--#{$name}0),
+                600: var(--#{$name}6),
+                700: var(--#{$name}6),
+                800: var(--#{$name}0),
+                900: var(--#{$name}0),
+                A100: var(--#{$name}0),
+                A200: var(--#{$name}6),
+                A400: var(--#{$name}0),
+                A700: var(--#{$name}6),
+                A900: var(--#{$name}0),
             )
         );
 
-        $mutex-primary-palette: mat-palette($mutex-lush);
-        $mutex-accent-palette: mat-palette($mutex-blume, 200, 200, 200, 200);
-        $mutex-warn-palette: mat-palette($mutex-blume, 600, 600, 200, 200);
+        // Create palettes based on the color maps.
+        // mat-palette($color-map, $default, $lighter, $darker, $text)
+        $primary-palette: mat-palette($primary);
+        $accent-palette: mat-palette($actions, 200, 200, 200, 200);
+        $warn-palette: mat-palette($actions, 600, 600, 200, 200);
 
-        $mutex-light-theme-foreground: (
-            base:              mat-color($mutex-night, 500),
+        // Set the foreground/background color map.
+        // 🎨 This might need to be tweeked depending on colors.
+        // We have two because we expect to create a light theme and a dark theme.
+        $light-theme-foreground: (
+            base:              mat-color($dark, 500),
             divider:           $dark-dividers,
             dividers:          $dark-dividers,
             disabled:          $dark-disabled-text,
-            disabled-button:   rgba(mat-color($mutex-night, 500), 0.26),
+            disabled-button:   rgba(mat-color($dark, 500), 0.26),
             disabled-text:     $dark-disabled-text,
             elevation:         black,
             hint-text:         $dark-disabled-text,
             secondary-text:    $dark-secondary-text,
-            icon:              rgba(mat-color($mutex-night, 500), 0.54),
-            icons:             rgba(mat-color($mutex-night, 500), 0.54),
-            text:              rgba(mat-color($mutex-night, 500), 0.87),
-            slider-min:        rgba(mat-color($mutex-night, 500), 0.87),
-            slider-off:        rgba(mat-color($mutex-night, 500), 0.26),
-            slider-off-active: rgba(mat-color($mutex-night, 500), 0.38),
+            icon:              rgba(mat-color($dark, 500), 0.54),
+            icons:             rgba(mat-color($dark, 500), 0.54),
+            text:              rgba(mat-color($dark, 500), 0.87),
+            slider-min:        rgba(mat-color($dark, 500), 0.87),
+            slider-off:        rgba(mat-color($dark, 500), 0.26),
+            slider-off-active: rgba(mat-color($dark, 500), 0.38),
         );
 
-        $mutex-light-theme-background: (
+        $light-theme-background: (
             status-bar: map_get($mat-grey, 300),
             app-bar:    map_get($mat-grey, 100),
-            background: mat-color($mutex-frost, 200),
+            background: mat-color($light, 200),
             hover:      rgba(black, 0.04),
-            card:       mat-color($mutex-frost, 800),
-            dialog:     mat-color($mutex-frost, 800),
-            disabled-button: rgba(mat-color($mutex-night, 500), 0.12),
-            raised-button: mat-color($mutex-frost, 500),
+            card:       mat-color($light, 800),
+            dialog:     mat-color($light, 800),
+            disabled-button: rgba(mat-color($dark, 500), 0.12),
+            raised-button: mat-color($light, 500),
             focused-button: $dark-focused,
             selected-button: map_get($mat-grey, 300),
             selected-disabled-button: map_get($mat-grey, 400),
@@ -205,31 +257,31 @@
             disabled-list-option: map_get($mat-grey, 200),
         );
 
-        $mutex-dark-theme-foreground: (
-            base:              mat-color($mutex-frost, 200),
+        $dark-theme-foreground: (
+            base:              mat-color($light, 200),
             divider:           $light-dividers,
             dividers:          $light-dividers,
             disabled:          $light-disabled-text,
-            disabled-button:   rgba(mat-color($mutex-night, 500), 0.3),
+            disabled-button:   rgba(mat-color($dark, 500), 0.3),
             disabled-text:     $light-disabled-text,
             elevation:         black,
             hint-text:         $light-disabled-text,
             secondary-text:    $light-secondary-text,
-            icon:              mat-color($mutex-frost, 200),
-            icons:             mat-color($mutex-frost, 200),
-            text:              mat-color($mutex-frost, 200),
-            slider-min:        mat-color($mutex-night, 500),
-            slider-off:        rgba(mat-color($mutex-frost, 500), 0.3),
-            slider-off-active: rgba(mat-color($mutex-frost, 500), 0.3),
+            icon:              mat-color($light, 200),
+            icons:             mat-color($light, 200),
+            text:              mat-color($light, 200),
+            slider-min:        mat-color($dark, 500),
+            slider-off:        rgba(mat-color($light, 500), 0.3),
+            slider-off-active: rgba(mat-color($light, 500), 0.3),
         );
 
-        $mutex-dark-theme-background: (
-            status-bar: mat-color($mutex-frost, 500),
+        $dark-theme-background: (
+            status-bar: mat-color($light, 500),
             app-bar:    map_get($mat-grey, 900),
-            background: mat-color($mutex-night, 500),
+            background: mat-color($dark, 500),
             hover:      rgba(white, 0.04),
-            card:       mat-color($mutex-night, 100),
-            dialog:     mat-color($mutex-night, 100),
+            card:       mat-color($dark, 100),
+            dialog:     mat-color($dark, 100),
             disabled-button: rgba(white, 0.12),
             raised-button: map-get($mat-grey, 800),
             focused-button: $light-focused,
@@ -240,52 +292,44 @@
             disabled-list-option: black,
         );
 
-        $mutex-dark-theme: (
-            primary: $mutex-primary-palette,
-            accent: $mutex-accent-palette,
-            warn: $mutex-warn-palette,
+        // Wrap all of the maps into a theme map.
+        $dark-theme: (
+            primary: $primary-palette,
+            accent: $accent-palette,
+            warn: $warn-palette,
             is-dark: true,
-            foreground: $mutex-dark-theme-foreground,
-            background: $mutex-dark-theme-background,
+            foreground: $dark-theme-foreground,
+            background: $dark-theme-background,
         );
         
-        $mutex-light-theme: (
-            primary: $mutex-primary-palette,
-            accent: $mutex-accent-palette,
-            warn: $mutex-warn-palette,
+        $light-theme: (
+            primary: $primary-palette,
+            accent: $accent-palette,
+            warn: $warn-palette,
             is-dark: false,
-            foreground: $mutex-light-theme-foreground,
-            background: $mutex-light-theme-background,
+            foreground: $light-theme-foreground,
+            background: $light-theme-background,
         );
 
+        // Check the theme-preference var and set the theme based on it.
+        // we also set some helper vars so we know what theme we picked.
+        // The text var is important, any text in the application should use it (or another color) so that it is readable when in light vs dark themes.
+        // 🎨 Might need to change the value or the text var depending on colors picked.
         @if $theme-preference == light {
             --prefers-light: true;
             --prefers-dark: false;
             
-            --mutex-text: var(--mutex0);
+            --#{$name}-text: var(--#{$name}0);
 
-            @include angular-material-theme($mutex-light-theme);
+            @include angular-material-theme($light-theme);
         }
-
 
         @if $theme-preference == dark {
             --prefers-light: false;
             --prefers-dark: true;
 
-            --mutex-text: var(--mutex6);
-            @include angular-material-theme($mutex-dark-theme);
+            --#{$name}-text: var(--#{$name}6);
+            @include angular-material-theme($dark-theme);
         }
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    * {
-        @include theme-mixin(light);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    * {
-        @include theme-mixin(dark);
     }
 }
