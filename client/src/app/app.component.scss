@@ -1,0 +1,11 @@
+@import '../theme.scss';
+
+.page {
+    height: 100%;
+    padding: 12px;
+}
+
+h1 {
+    margin-top: 0;
+    color: var(--mutex-text);
+}

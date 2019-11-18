@@ -1,0 +1,53 @@
+<div class="table">
+	<ng-container [ngTemplateOutlet]="filterTemplate" [ngTemplateOutletContext]="{ control: filterControl }"></ng-container>
+	<div class="fill" [ngClass]="{ hidden: dataSource.dataLoadingSubject | async }">
+		<mat-table matSort [dataSource]="dataSource">
+			<ng-container *ngFor="let column of columnSchemas; let i = index" [cdkColumnDef]="columnNames[i]">
+				<mat-header-cell
+					*cdkHeaderCellDef
+					mat-sort-header
+					[attr.disabled]="!column.isSortable"
+					[style.padding-left]="column.padding || '2px'"
+					[style.padding-right]="column.padding || '2px'"
+					[style.max-width]="column.width"
+				>
+					{{ column.headerName }}
+				</mat-header-cell>
+				<mat-cell
+					*cdkCellDef="let row"
+					[style.padding-left]="column.padding || '2px'"
+					[style.padding-right]="column.padding || '2px'"
+					[style.max-width]="column.width"
+				>
+					<ng-container
+						[ngTemplateOutlet]="calcTemplate(column)"
+						[ngTemplateOutletContext]="{ column: column, row: row }"
+					></ng-container>
+				</mat-cell>
+			</ng-container>
+
+			<mat-header-row *cdkHeaderRowDef="columnNames"></mat-header-row>
+			<mat-row *cdkRowDef="let row; columns: columnNames"></mat-row>
+		</mat-table>
+
+		<mat-paginator [pageSizeOptions]="pageSizes" [length]="dataSource.dataCount" showFirstLastButtons></mat-paginator>
+	</div>
+	<mat-spinner *ngIf="dataSource.dataLoadingSubject | async"></mat-spinner>
+</div>
+
+<ng-template #default let-column="column" let-row="row">
+	<div>{{ column.displayExp(row) }}</div>
+</ng-template>
+
+<ng-template #link let-column="column" let-row="row"
+	><a [routerLink]="column.pathExp(row)">{{ column.displayExp(row) }}</a></ng-template
+>
+
+<ng-template #filter let-control="control">
+	<div class="search">
+		<mat-form-field>
+			<input matInput [formControl]="control" placeholder="Filter" />
+			<mat-icon matSuffix>search</mat-icon>
+		</mat-form-field>
+	</div>
+</ng-template>
