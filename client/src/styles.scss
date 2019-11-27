@@ -7,3 +7,50 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @include create-project(mutex);
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Roboto;
+    font-weight: 300;
+    color: var(--rc-2);
+}
+
+.mat-expansion-panel {
+	box-shadow: none !important;
+}
+
+.mx-page {
+    flex: 1;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+    min-height: 0px;
+}
+
+.mx-page-header {
+	position: sticky;
+	top: 0;
+	background-color: white;
+	z-index: 9001;
+}
+
+.mat-table, .mat-paginator {
+	// Table background is controlled by the same style as the card background. We don't like that.
+	background: var(--mutex0) !important;
+}
+
+.mx-controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+    .spacer {
+		flex: 1;
+	}
+
+	.filter {
+		margin-left: 4px;
+		min-width: 140px;
+		width: 500px;
+	}
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'ks-nav-tabs',
+  selector: 'mx-nav-tabs',
   templateUrl: './nav-tabs.component.html',
   styleUrls: ['./nav-tabs.component.scss']
 })

@@ -33,7 +33,7 @@ export type TableDataProviderType<T extends SearchResult<unknown>> = (
 ) => Observable<T>;
 
 @Component({
-	selector: 'ks-table',
+	selector: 'mx-table',
 	templateUrl: './table.component.html',
 	styleUrls: ['./table.component.scss'],
 })

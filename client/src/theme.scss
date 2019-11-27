@@ -47,6 +47,9 @@
     @include mat-core();
 
     * {
+
+        color: var(--#{$name}-text);
+
         // Setup colors.
         // 🎨 Change these to whatever colors you want.
 
@@ -320,6 +323,7 @@
             --prefers-dark: false;
             
             --#{$name}-text: var(--#{$name}0);
+            --#{$name}-background: var(--#{$name}6);
 
             @include angular-material-theme($light-theme);
         }
@@ -329,6 +333,7 @@
             --prefers-dark: true;
 
             --#{$name}-text: var(--#{$name}6);
+            --#{$name}-background: var(--#{$name}0);
             @include angular-material-theme($dark-theme);
         }
     }
