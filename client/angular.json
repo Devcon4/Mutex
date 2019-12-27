@@ -25,7 +25,9 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "**/*", "input": "node_modules/monaco-editor/esm/vs/editor/", "output": "monaco-editor/esm/vs/editor/" },
+              { "glob": "**/*", "input": "node_modules/monaco-editor/esm/vs/language/typescript/", "output": "monaco-editor/esm/vs/language/typescript/" }
             ],
             "styles": [
               "src/styles.scss"
@@ -67,7 +69,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mutex:build"
+            "browserTarget": "mutex:build",
+            "proxyConfig": "proxy.config.js"
           },
           "configurations": {
             "production": {

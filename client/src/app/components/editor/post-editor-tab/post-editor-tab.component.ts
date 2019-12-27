@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import * as monaco from 'monaco-editor';
 
 @Component({
   selector: 'app-post-editor-tab',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostEditorTabComponent implements OnInit {
 
+  @ViewChild('editor', { static: true}) editorRef: ElementRef;
   constructor() { }
 
   ngOnInit() {
+    monaco.editor.create(this.editorRef.nativeElement, {
+      language: 'markdown',
+      theme: 'vsdark'
+    });
   }
 
 }

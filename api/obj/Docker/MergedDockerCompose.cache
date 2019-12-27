@@ -31,8 +31,8 @@ services:
     - published: 44366
       target: 443
     volumes:
-    - C:\Users\devco\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
-    - C:\Users\devco\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - /c/Users/devco/AppData/Roaming/ASP.NET/Https:/root/.aspnet/https:ro
+    - /c/Users/devco/AppData/Roaming/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 version: '3.4'
 volumes:
   dbdata: {}

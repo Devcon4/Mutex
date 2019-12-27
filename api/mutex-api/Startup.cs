@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using HotChocolate;
 using HotChocolate.AspNetCore;
@@ -14,56 +15,63 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using mutex_api.modules.mutation;
 using mutex_api.modules.post;
 using mutex_api.modules.query;
 using mutex_data;
 using mutex_data.Entities;
 
 namespace mutex_api {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
 
-        public IConfiguration Configuration { get; }
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
+	public class Inject: Attribute { }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
-            services.AddDbContext<MutexContext>(options => options.UseNpgsql(Configuration.GetConnectionString("MutexDB")));
-            services.Configure<KestrelServerOptions>(
-                Configuration.GetSection("Kestrel"));
-            services.AddGraphQL(sp => SchemaBuilder.New()
-              .AddQueryType<Query>()
-              .AddType<Post>()
-              .AddServices(sp)
-              .Create());
-        }
+	public class Startup {
+		public Startup(IConfiguration configuration) {
+			Configuration = configuration;
+		}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+		public IConfiguration Configuration { get; }
 
-            app.UseHttpsRedirection();
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services) {
+			services.AddControllers();
 
-            app.UseRouting();
+			var injectServices = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetCustomAttributes(typeof(Inject), true).Any()).Distinct();
 
-            app.UseAuthorization();
+			foreach(var s in injectServices) {
+				services.AddSingleton(s);
+			}
 
-            app.UseGraphQL("/api/graphql");
-            app.UsePlayground("/api/graphql", "/api/playground");
+			services.AddDbContext<MutexContext>(options => options.UseNpgsql(Configuration.GetConnectionString("MutexDB")));
+			services.Configure<KestrelServerOptions>(
+					Configuration.GetSection("Kestrel"));
+			services.AddGraphQL(sp => SchemaBuilder.New()
+				.AddServices(sp)
+				.AddQueryType<QueryType>()
+				.AddMutationType<MutationType>()
+				//.AddObjectType<PostType>()
+				.Create());
+		}
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+			if (env.IsDevelopment()) {
+				app.UseDeveloperExceptionPage();
+			}
+
+			//app.UseHttpsRedirection();
+
+			app.UseRouting();
+
+			app.UseAuthorization();
+
+			app.UseGraphQL("/api/graphql");
+			app.UsePlayground("/api/graphql", "/api/playground");
+
+			app.UseEndpoints(endpoints => {
+				endpoints.MapControllers();
+			});
+		}
+	}
 }

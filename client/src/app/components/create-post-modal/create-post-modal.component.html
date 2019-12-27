@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Create Post</h2>
+<mat-dialog-content>
+
+</mat-dialog-content>
+<form [formGroup]="createForm">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" required>
+    </mat-form-field>
+</form>
+<div class="spacer"></div>
+<mat-dialog-actions>
+    <button mat-button color="primary" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" mat-dialog-close [disabled]="createForm.invalid" (click)="onSubmit()">Save</button>
+</mat-dialog-actions>

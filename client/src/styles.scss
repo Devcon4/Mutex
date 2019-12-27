@@ -8,11 +8,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @include create-project(mutex);
 
+*::-webkit-scrollbar {
+	width: 10px;
+	margin-right: 2px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: rgba(0,0,0,.2);
+	border-radius: 20px;
+}
+
+*::-webkit-scrollbar-track {
+	background: rgba(0,0,0,.2);
+	border-radius: 20px;
+}
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Roboto;
     font-weight: 300;
-    color: var(--rc-2);
+    color: var(--mutex8);
+}
+
+a {
+	color: var(--mutex8);
+
+	&:hover {
+		filter: brightness(80%);
+	}
 }
 
 .mat-expansion-panel {
@@ -36,7 +58,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .mat-table, .mat-paginator {
 	// Table background is controlled by the same style as the card background. We don't like that.
-	background: var(--mutex0) !important;
+	background: var(--mutex-background) !important;
+}
+
+.mat-expansion-panel {
+	box-shadow: none !important;
+	background: var(--kestrel-card) !important;
 }
 
 .mx-controls {

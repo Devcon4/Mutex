@@ -47,11 +47,11 @@
           "dependencies": {
             "HotChocolate.AspNetCore": {
               "target": "Package",
-              "version": "[10.2.0, )"
+              "version": "[10.3.0, )"
             },
             "HotChocolate.AspNetCore.Playground": {
               "target": "Package",
-              "version": "[10.2.0, )"
+              "version": "[10.3.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

@@ -6,5 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace mutex_api.modules.post {
-    public class PostType : ObjectType<Post> {}
+	public class PostType : ObjectType<Post> {
+		protected override void Configure(IObjectTypeDescriptor<Post> descriptor) {
+		}
+	}
+
+	public class PostInputType : InputObjectType<Post> { }
 }

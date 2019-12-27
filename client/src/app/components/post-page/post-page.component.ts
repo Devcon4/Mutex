@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostPageComponent implements OnInit {
 
+  public tabs = [{ label: 'editor', path: './editor' }, { label: 'files', path: './files'}];
+
   constructor() { }
 
   ngOnInit() {

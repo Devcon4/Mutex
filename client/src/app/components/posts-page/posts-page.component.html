@@ -1,3 +1,20 @@
 <div class="mx-page posts">
-    <mx-table [schema]="postSchema" [dataProvider]="postDataProvider"></mx-table>
+    
+    <mx-table [schema]="postSchema" [dataProvider]="postDataProvider" [filterTemplate]="filter"></mx-table>
 </div>
+
+<ng-template>
+</ng-template>
+
+<ng-template #filter let-control="control">
+    <div class="mx-controls">
+        <button mat-raised-button color="primary" (click)="openCreateModal()">Create Post</button>
+
+        <div class="search">
+            <mat-form-field>
+                <input matInput [formControl]="control" placeholder="Filter" />
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+</ng-template>

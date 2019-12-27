@@ -7,12 +7,13 @@ C:\Code\Mutex\api\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Code\Mutex\api\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Code\Mutex\api\bin\Debug\Microsoft.EntityFrameworkCore.dll
 C:\Code\Mutex\api\bin\Debug\HotChocolate.Types.dll
-C:\Code\Mutex\api\bin\Debug\HotChocolate.Abstractions.dll
 C:\Code\Mutex\api\bin\Debug\mutex-data.dll
-C:\Code\Mutex\api\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Code\Mutex\api\bin\Debug\HotChocolate.Abstractions.dll
 C:\Code\Mutex\api\bin\Debug\HotChocolate.AspNetCore.dll
+C:\Code\Mutex\api\bin\Debug\HotChocolate.AspNetCore.Playground.dll
 C:\Code\Mutex\api\bin\Debug\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Code\Mutex\api\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Code\Mutex\api\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Code\Mutex\api\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Code\Mutex\api\bin\Debug\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Code\Mutex\api\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
@@ -22,6 +23,7 @@ C:\Code\Mutex\api\bin\Debug\Microsoft.Extensions.Options.dll
 C:\Code\Mutex\api\bin\Debug\HotChocolate.Language.dll
 C:\Code\Mutex\api\bin\Debug\GreenDonut.dll
 C:\Code\Mutex\api\bin\Debug\HotChocolate.Utilities.dll
+C:\Code\Mutex\api\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Code\Mutex\api\bin\Debug\HotChocolate.Subscriptions.dll
 C:\Code\Mutex\api\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Code\Mutex\api\bin\Debug\HotChocolate.Core.dll
@@ -38,4 +40,3 @@ C:\Code\Mutex\api\bin\Debug\mutex-api.pdb
 C:\Code\Mutex\api\bin\Debug\mutex-data.pdb
 C:\Code\Mutex\api\obj\Debug\docker-compose.dcprojAssemblyReference.cache
 C:\Code\Mutex\api\obj\Debug\docker-compose.dcproj.CopyComplete
-C:\Code\Mutex\api\bin\Debug\HotChocolate.AspNetCore.Playground.dll

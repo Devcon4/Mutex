@@ -1,10 +1,9 @@
 C:\Code\Mutex\api\mutex-data\bin\Debug\netcoreapp3.0\mutex-data.deps.json
+C:\Code\Mutex\api\mutex-data\bin\Debug\netcoreapp3.0\mutex-data.runtimeconfig.json
+C:\Code\Mutex\api\mutex-data\bin\Debug\netcoreapp3.0\mutex-data.runtimeconfig.dev.json
 C:\Code\Mutex\api\mutex-data\bin\Debug\netcoreapp3.0\mutex-data.dll
 C:\Code\Mutex\api\mutex-data\bin\Debug\netcoreapp3.0\mutex-data.pdb
-C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.csprojAssemblyReference.cache
 C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.AssemblyInfoInputs.cache
 C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.AssemblyInfo.cs
 C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.dll
 C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.pdb
-C:\Code\Mutex\api\mutex-data\bin\Debug\netcoreapp3.0\mutex-data.runtimeconfig.json
-C:\Code\Mutex\api\mutex-data\bin\Debug\netcoreapp3.0\mutex-data.runtimeconfig.dev.json
