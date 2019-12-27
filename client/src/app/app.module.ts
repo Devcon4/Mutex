@@ -6,22 +6,18 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './components/tools/table/table.component';
 import { NavTabsComponent } from './components/tools/nav-tabs/nav-tabs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MAT_DIALOG_DEFAULT_OPTIONS,
-  MatTabsModule,
-  MatButtonModule,
-  MatDialogModule,
-  MatTableModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatPaginatorModule,
-  MatProgressSpinnerModule,
-  MatSortModule,
-  MatInputModule,
-  MatExpansionModule,
-  MatSidenavModule,
-  MatDialogConfig
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogConfig } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';

@@ -1,7 +1,8 @@
+import {gql} from '@apollo/client/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Apollo, QueryRef,  } from 'apollo-angular';
-import gql from 'graphql-tag';
+
 import { BehaviorSubject } from 'rxjs';
 import { TableService } from 'src/app/components/tools/table/table.service';
 import { tap, take, map } from 'rxjs/operators';
