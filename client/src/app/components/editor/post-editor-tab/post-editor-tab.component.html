@@ -1,5 +1,6 @@
 <div class="post-editor">
     <div class="post-editor">
-        <div #editor class="editor-body"></div>
+        <ngx-monaco-editor #editorRef class="editor-body monaco" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
+        <div #previewRef class="editor-body preview" [innerHTML]="preview"></div>
     </div>
 </div>
