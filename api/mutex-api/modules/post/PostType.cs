@@ -11,5 +11,12 @@ namespace mutex_api.modules.post {
 		}
 	}
 
-	public class PostInputType : InputObjectType<Post> { }
+	public class PostInputType : InputObjectType<Post> {
+		protected override void Configure(IInputObjectTypeDescriptor<Post> descriptor) {
+			descriptor.Field(c => c.CreatedDate).Type<DateTimeType?>();
+			descriptor.Field(c => c.LastUpdated).Type<DateTimeType?>();
+			descriptor.Field(c => c.PublishedDate).Type<DateTimeType?>();
+
+		}
+	}
 }

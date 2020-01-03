@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using HotChocolate;
 using HotChocolate.AspNetCore;
+using HotChocolate.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -47,6 +48,7 @@ namespace mutex_api {
 			services.Configure<KestrelServerOptions>(
 					Configuration.GetSection("Kestrel"));
 			services.AddGraphQL(sp => SchemaBuilder.New()
+				.BindClrType<DateTime, DateTimeType?>()
 				.AddServices(sp)
 				.AddQueryType<QueryType>()
 				.AddMutationType<MutationType>()

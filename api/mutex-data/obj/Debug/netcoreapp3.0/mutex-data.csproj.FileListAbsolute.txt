@@ -7,3 +7,4 @@ C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.AssemblyInfoInpu
 C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.AssemblyInfo.cs
 C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.dll
 C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.pdb
+C:\Code\Mutex\api\mutex-data\obj\Debug\netcoreapp3.0\mutex-data.csprojAssemblyReference.cache
