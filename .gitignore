@@ -12,3 +12,5 @@
 /api/mutex-api/obj
 /api/mutex-data/bin
 /api/mutex-data/obj
+/api/mutex-api/bin/Debug/netcoreapp3.0
+/api/mutex-data/bin/Debug/netcoreapp3.0
