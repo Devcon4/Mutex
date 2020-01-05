@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0px;
+}
+
+.post-editor {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    min-height: 0px;
+    padding: 32px;
+    padding-bottom: 8px;
+}
+.editor-body {
+
+    flex: 1;
+    height: auto;
+    overflow: auto;
+}
+
+.monaco {
+    padding-right: 8px;
+}
+
+.preview {
+    height: 98%;
+    padding-left: 8px;
+}

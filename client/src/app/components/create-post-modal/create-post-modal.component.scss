@@ -1,0 +1,22 @@
+form {
+    display: flex;
+    flex-direction: column;
+    min-height: 0px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0px;
+}
+
+mat-dialog-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

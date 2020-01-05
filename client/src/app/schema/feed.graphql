@@ -1,6 +1,0 @@
-query MyFeed {
-  feed {
-    id
-    commentCount
-  }
-}

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TableSchema, TableDataProviderType, SearchResult } from '../tools/table/table.component';
 import { of } from 'rxjs';
+import { PostSimple, PostStateService } from 'src/app/services/post-state/post-state.service';
+import { map, tap } from 'rxjs/operators';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-posts-page',
@@ -9,21 +12,25 @@ import { of } from 'rxjs';
 })
 export class PostsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private postState: PostStateService, private dialogService: DialogService) { }
+
+  public postSchema: TableSchema<PostSimple> = {
+    Title: { headerName: 'Title', displayExp: x => x.name, pathExp: x => `../../posts/${x.postId}/editor` }
+  };
 
   ngOnInit() {
+    this.postState.watchPosts();
   }
 
-  public postDataProvider: TableDataProviderType<SearchResult<{}>> = (term, index, size, sort) => {
-    if(!sort) {
-      sort = {active: 'Title', direction: 'asc'};
+  public postDataProvider: TableDataProviderType<SearchResult<PostSimple>> = (term, index, size, sort) => {
+    if (!sort) {
+      sort = { active: 'Title', direction: 'asc' };
     }
 
-    return of({ data: [{Title: 'fake Test'}], count: 1 });
+    return this.postState.posts.pipe(map(l => ({data: l.data, count: l.data.length})));
   }
 
-  public postSchema: TableSchema<{}> = {
-    'Title': {headerName: 'Title', displayExp: x => 'test!'}
+  public openCreateModal() {
+    this.dialogService.CreatePost();
   }
-
 }

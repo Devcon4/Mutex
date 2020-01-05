@@ -6,5 +6,9 @@
 /api/mutex/Tests/mutex.IntegrationTest/bin
 /api/mutex/Tests/mutex.IntegrationTest/obj
 /api/.vs
-/api/bin
-/api/obj
+/api/**/bin
+/api/**/obj
+/api/mutex-api/bin
+/api/mutex-api/obj
+/api/mutex-data/bin
+/api/mutex-data/obj

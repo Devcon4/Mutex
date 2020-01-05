@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  public tabs = [{ label: 'posts', path: './posts'}]
+  public tabs = [{ label: 'posts', path: './posts' }];
 
   constructor() { }
 

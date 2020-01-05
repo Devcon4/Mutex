@@ -1,51 +1,50 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { HomePageComponent } from "./components/home-page/home-page.component";
-import { PostsPageComponent } from "./components/posts-page/posts-page.component";
-import { PostPageComponent } from "./components/post-page/post-page.component";
-import { PostEditorTabComponent } from "./components/editor/post-editor-tab/post-editor-tab.component";
-import { PostFilesTabComponent } from "./components/post-files-tab/post-files-tab.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { PostsPageComponent } from './components/posts-page/posts-page.component';
+import { PostPageComponent } from './components/post-page/post-page.component';
+import { PostEditorTabComponent } from './components/editor/post-editor-tab/post-editor-tab.component';
+import { PostFilesTabComponent } from './components/post-files-tab/post-files-tab.component';
 
 const routes: Routes = [
   {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "dashboard"
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
   },
   {
-    path: "dashboard",
+    path: 'dashboard',
     component: HomePageComponent,
     children: [
+      // {
+      //   path: '',
+      //   pathMatch: 'full',
+      //   redirectTo: 'posts'
+      // },
       {
-        path: "",
-        pathMatch: "full",
-        redirectTo: "posts"
+        path: 'posts',
+        component: PostsPageComponent
       },
-      {
-        path: "posts",
-        component: PostsPageComponent,
-        children: [
+    ]
+  },
+  {
+    path: 'posts/:id',
+    component: PostPageComponent,
+    children: [
+
           {
-            path: ":id",
-            component: PostPageComponent,
-            children: [
-              {
-                path: "editor",
-                component: PostEditorTabComponent
-              },
-              {
-                path: "files",
-                component: PostFilesTabComponent
-              },
-              {
-                path: "",
-                pathMatch: "full",
-                redirectTo: "editor"
-              }
-            ]
-          }
-        ]
-      }
+            path: 'editor',
+            component: PostEditorTabComponent
+          },
+          {
+            path: 'files',
+            component: PostFilesTabComponent
+          },
+          // {
+          //   path: '',
+          //   pathMatch: 'full',
+          //   redirectTo: 'editor'
+          // }
     ]
   }
 ];
@@ -54,4 +53,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

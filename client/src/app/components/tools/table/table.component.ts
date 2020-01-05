@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { finalize, debounceTime } from 'rxjs/operators';
+import { finalize, debounceTime, tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataSource } from '@angular/cdk/table';
@@ -64,7 +64,7 @@ export class TableComponent<T extends SearchResult<U>, U> implements OnInit {
 
 	private sortValue: Sort;
 
-	constructor(private tableService: TableService) {}
+	constructor(private tableService: TableService) { }
 
 	ngOnInit() {
 		if (!this.filterTemplate) {
@@ -120,7 +120,7 @@ class TableDataSource<T extends SearchResult<U>, U> implements DataSource<U> {
 
 	public dataCount = 0;
 
-	constructor() {}
+	constructor() { }
 
 	connect(collectionViewer: import('@angular/cdk/collections').CollectionViewer): Observable<U[] | readonly U[]> {
 		return this.dataSubject.asObservable();
@@ -137,6 +137,7 @@ class TableDataSource<T extends SearchResult<U>, U> implements DataSource<U> {
 			.pipe(finalize(() => this.dataLoadingSubject.next(false)))
 			.subscribe((d: T) => {
 				this.dataSubject.next(d.data);
+				this.dataLoadingSubject.next(false);
 				this.dataCount = d.count;
 			});
 	}
