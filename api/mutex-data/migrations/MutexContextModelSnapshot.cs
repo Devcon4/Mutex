@@ -16,7 +16,7 @@ namespace mutex_data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.0.1")
+                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("mutex_data.Entities.Post", b =>
@@ -33,7 +33,7 @@ namespace mutex_data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime>("LastUpdated")
+                    b.Property<DateTime?>("LastUpdated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp without time zone");
 
@@ -43,7 +43,7 @@ namespace mutex_data.Migrations
                     b.Property<string>("PostStatusId")
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("PublishedDate")
+                    b.Property<DateTime?>("PublishedDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int?>("StatusPostStatusId")

@@ -1,4 +1,5 @@
-﻿using HotChocolate.Types;
+﻿#nullable enable
+using HotChocolate.Types;
 using mutex_data.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace mutex_api.modules.post {
 		}
 	}
 
-	public class PostInputType : InputObjectType<Post> {
+    public class PostInputType : InputObjectType<Post> {
 		protected override void Configure(IInputObjectTypeDescriptor<Post> descriptor) {
 			descriptor.Field(c => c.CreatedDate).Type<DateTimeType?>();
 			descriptor.Field(c => c.LastUpdated).Type<DateTimeType?>();

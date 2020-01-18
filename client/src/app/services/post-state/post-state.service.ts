@@ -33,7 +33,7 @@ export class PostStateService {
 
   createPost(post: PostInput) {
     post.postId = 0;
-
+    post.createdDate = new Date();
     this.apollo.mutate({ mutation: gql`
       mutation createPost($newPost:PostInput) {
         createPost(input: $newPost) {
@@ -52,6 +52,7 @@ export class PostStateService {
 export interface PostInput {
   name: string;
   postId?: number;
+  createdDate: Date;
 }
 
 export interface PostSimple {

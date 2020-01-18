@@ -13,10 +13,10 @@ namespace mutex_data.Entities {
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public DateTime CreatedDate { get; set; }
 
-		public DateTime PublishedDate { get; set; }
+		public DateTime? PublishedDate { get; set; }
 		
 		[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-		public DateTime LastUpdated { get; set; }
+		public DateTime? LastUpdated { get; set; }
 
 		[Column(TypeName = "text")]
 		public string Content { get; set; }

@@ -14,11 +14,12 @@ namespace mutex_data {
 			Database.Migrate();
 		}
 
-		//protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-		//	optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=mutex;User Id=dev;Password=MutexDev");
-		//}
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=mutex;User Id=dev;Password=MutexDev");
+        //}
 
-		public DbSet<Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
 		public DbSet<PostStatus> PostStatuses { get; set; }
     }
 }
